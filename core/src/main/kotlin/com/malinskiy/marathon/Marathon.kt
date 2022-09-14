@@ -80,7 +80,16 @@ class Marathon(
         val tests = applyTestFilters(parsedTests)
         val shard = prepareTestShard(tests, analytics)
 
-        log.info("Scheduling ${tests.size} tests")
+        log.info("\n\n\n **** Marathon File Params Start**** \n")
+        log.info("${configuration}")
+        log.info("\n\n\n **** Marathon File Params Done**** \n")
+
+
+        val iosConfig = configuration.vendorConfiguration as? VendorConfiguration.IOSConfiguration
+        iosConfig?.let {
+            log.info("\n\n\nScheduling ${tests.size} tests matching tag: ${iosConfig.xcTestRunnerTag}")
+            log.info("\n\n\n **** ${iosConfig} **** \n")
+        }
         log.debug(tests.joinToString(", ") { it.toTestName() })
         val currentCoroutineContext = coroutineContext
         val scheduler = Scheduler(

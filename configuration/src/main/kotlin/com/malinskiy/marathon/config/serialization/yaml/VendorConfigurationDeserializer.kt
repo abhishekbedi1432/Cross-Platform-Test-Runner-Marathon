@@ -34,6 +34,7 @@ class VendorConfigurationDeserializer(
 
                 // Any relative path specified in Marathonfile should be resolved against the directory Marathonfile is in
                 val resolvedDerivedDataDir = marathonfileDir.resolve(iosConfiguration.derivedDataDir)
+                val resolvedResultBundlePath = marathonfileDir.resolve(iosConfiguration.xcResultBundlePath)
                 val finalXCTestRunPath = iosConfiguration.xctestrunPath?.resolveAgainst(marathonfileDir)
                     ?: fileListProvider
                         .fileList(resolvedDerivedDataDir)
@@ -50,6 +51,7 @@ class VendorConfigurationDeserializer(
                     sourceRoot = optionalSourceRoot,
                     devicesFile = optionalDevices,
                     knownHostsPath = optionalKnownHostsPath,
+                    xcResultBundlePath = resolvedResultBundlePath,
                 )
             }
             TYPE_ANDROID -> {

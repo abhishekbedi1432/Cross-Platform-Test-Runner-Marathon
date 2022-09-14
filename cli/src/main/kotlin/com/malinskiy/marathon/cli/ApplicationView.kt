@@ -34,7 +34,7 @@ fun main(args: Array<String>): Unit = mainBody(
             exitProcess(0)
         }
 
-        logger.info { "Starting marathon v${BuildConfig.VERSION}" }
+        logger.info { "Starting <MY>marathon v${BuildConfig.VERSION}" }
         val bugsnagExceptionsReporter = ExceptionsReporterFactory.get(bugsnagReporting)
         try {
             bugsnagExceptionsReporter.start(AppType.CLI)

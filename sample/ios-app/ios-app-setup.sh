@@ -48,7 +48,7 @@ else
   chosen_sim_udid=$(xcrun simctl list devices -j | jq -r '.devices | flatten | to_entries | .['"$simid"'] | .value.udid')
   echo "Chosen simulator UDID: $chosen_sim_udid"
   echo "$(pwd)"
-  sed 's/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/'"$chosen_sim_udid"'/g' Marathondevices.template >Marathondevices
+  sed 's/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/'"$chosen_sim_udid"'/g' Marathondevices.template > Marathondevices
 
   echo "Ok"
 fi
